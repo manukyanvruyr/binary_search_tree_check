@@ -30,6 +30,15 @@ bool BFS_test()
 	return t;
 }
 
+bool largest_values_in_rows_test()
+{
+	binary_tree<int> t1{15, 5, 20, 2, 6, 18, 23};
+	auto v1 = get_largest_values_in_rows(t1);
+	std::vector<int> r1{15, 20, 23};
+	bool t = v1 == r1;
+	return t;
+}
+
 }
 
 namespace test
@@ -39,6 +48,7 @@ void run()
 {
 	bool t = binary_search_tree();
 	t = t && BFS_test();
+	t = t && largest_values_in_rows_test();
 	if (t) {
 		std::cout << "Passed\n";
 	} else {

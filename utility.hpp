@@ -45,3 +45,30 @@ std::vector<T> BFS(const binary_tree<T>& t)
     }
     return v;
 }
+
+template <typename T>
+void get_largest_values_in_rows(Node<T>* const node, std::vector<T>& v, std::size_t d)
+{
+	if (nullptr == node) {
+        return;
+    }
+    if (v.size() == d) {
+        v.push_back(node->value);
+    } else if (node->value > v[d]) {
+        v[d] = node->value;
+    }
+    get_largest_values_in_rows(node->left, v, d + 1);
+    get_largest_values_in_rows(node->right, v, d + 1);
+}
+
+template <typename T>
+std::vector<T> get_largest_values_in_rows(const binary_tree<T>& t)
+{
+	std::vector<T> v;
+	auto root = t.get_root();
+	if (nullptr == root) {
+		return v;
+	}
+	get_largest_values_in_rows(root, v, 0);
+	return v;
+}
