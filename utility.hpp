@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <queue>
+#include <stack>
 
 #include "binary_tree.hpp"
 
@@ -25,7 +26,7 @@ bool is_binary_search_tree(const binary_tree<T>& t)
 template <typename T>
 std::vector<T> BFS(const binary_tree<T>& t)
 {
-	std::vector<int> v;
+	std::vector<T> v;
 	auto root = t.get_root();
 	if (nullptr == root) {
 		return v;
@@ -44,6 +45,30 @@ std::vector<T> BFS(const binary_tree<T>& t)
         }
     }
     return v;
+}
+
+template <typename T>
+std::vector<T> DFS(const binary_tree<T>& t)
+{
+	std::vector<T> v;
+	auto root = t.get_root();
+	if (nullptr == root) {
+		return v;
+	}
+	std::stack<Node<T>*> s;
+	s.push(root);
+	while (!s.empty()) {
+		auto node = s.top();
+		v.push_back(node->value);
+		s.pop();
+        if (nullptr != node->left) {
+            s.push(node->left);
+        }
+        if (nullptr != node->right) {
+            s.push(node->right);
+        }
+	}
+	return v;
 }
 
 template <typename T>

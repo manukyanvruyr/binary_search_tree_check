@@ -30,6 +30,19 @@ bool BFS_test()
 	return t;
 }
 
+bool DFS_test()
+{
+	binary_tree<int> t1{15, 5, 20, 2, 6, 18, 23};
+	auto v1 = DFS(t1);
+	std::vector<int> r1{15, 20, 23, 18, 5, 6, 2};
+	bool t = v1 == r1;
+	binary_tree<int> t2{15, 5, 20, 2};
+	auto v2 = DFS(t2);
+	std::vector<int> r2{15, 20, 5, 2};
+	t = t && v2 == r2;
+	return t;
+}
+
 bool largest_values_in_rows_test()
 {
 	binary_tree<int> t1{15, 5, 20, 2, 6, 18, 23};
@@ -48,6 +61,7 @@ void run()
 {
 	bool t = binary_search_tree();
 	t = t && BFS_test();
+	t = t && DFS_test();
 	t = t && largest_values_in_rows_test();
 	if (t) {
 		std::cout << "Passed\n";
