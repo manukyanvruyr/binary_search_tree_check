@@ -1,2 +1,1 @@
-Simple implementation of binary tree.
-Checks if binary tree is binary search tree.
+Implementation of binary tree and some functionality.
